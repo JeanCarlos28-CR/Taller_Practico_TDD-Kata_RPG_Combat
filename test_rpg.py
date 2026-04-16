@@ -46,3 +46,15 @@ def test_no_curar_mas_del_maximo():
 
     assert heroe.hp == 1000 # El límite es 1000
 
+def test_los_muertos_no_se_curan():
+    heroe = Personaje()
+    # Matamos al héroe
+    heroe.hp = 0
+    heroe.esta_vivo = False
+
+    # Intentamos curarlo
+    heroe.curar(heroe, cantidad=500)
+
+    # Debe seguir muerto y con 0 HP
+    assert heroe.hp == 0
+    assert heroe.esta_vivo == False
